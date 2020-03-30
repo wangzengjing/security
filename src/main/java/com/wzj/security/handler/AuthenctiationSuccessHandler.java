@@ -27,7 +27,7 @@ public class AuthenctiationSuccessHandler implements AuthenticationSuccessHandle
 //
 //        System.out.println(url);
         System.out.println("登录成功，转发url");
-        response.sendRedirect("/user1");
+        response.sendRedirect("/users");
 
 
     }

@@ -17,7 +17,7 @@
     <!--@mbg.generated generated on Mon Dec 09 10:14:11 CST 2019.-->
     id, parent_id, `name`, enname, url, description, created, updated
   </sql>
-  <select id="selectByUserId" resultMap="BaseResultMap">
+    <select id="selectByUserId" resultMap="BaseResultMap">
     SELECT
 	p.*
 FROM

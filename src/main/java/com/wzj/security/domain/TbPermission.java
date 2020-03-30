@@ -1,6 +1,7 @@
 package com.wzj.security.domain;
 
 import lombok.Data;
+import org.assertj.core.util.Lists;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Table(name = "tb_permission")
@@ -54,6 +56,7 @@ public class TbPermission implements Serializable {
     private Date updated;
 
     private static final long serialVersionUID = 1L;
+
 
 
     public Long getId() {
@@ -119,4 +122,5 @@ public class TbPermission implements Serializable {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+
 }

@@ -6,6 +6,7 @@ import com.wzj.security.domain.TbUser;
 import com.wzj.security.service.TbPermissionService;
 import com.wzj.security.service.TbRoleService;
 import com.wzj.security.service.TbUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +19,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Service
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -41,8 +45,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //            List<TbPermission> tbPermissions = tbPermissionService.selectByUserId(tbUser.getId());
 //            tbPermissions.forEach(tbPermission -> {
 //                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(tbPermission.getEnname());
+//                log.info("登录账号{},账号所具有的权限{}",username,tbPermission.getEnname());
 //                grantedAuthorities.add(grantedAuthority);
 //            });
+
             List<TbRole> tbRoles = tbRoleService.selectByUserId(tbUser.getId());
             tbRoles.forEach(tbRole->{
                 GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(tbRole.getEnname());

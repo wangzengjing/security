@@ -5,6 +5,7 @@ import com.wzj.security.domain.TbUser;
 import com.wzj.security.mapper.TbUserMapper;
 import com.wzj.security.service.TbUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ public class TbUserServiceImpl implements TbUserService {
 
 
     @Override
+
     public TbUser getByUsername(String username) {
         Example example = new Example(TbUser.class);
 

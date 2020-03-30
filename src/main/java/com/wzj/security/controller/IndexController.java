@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("/user1")
+    @RequestMapping("/users")
     public String user1(){
         return "user1";
     }

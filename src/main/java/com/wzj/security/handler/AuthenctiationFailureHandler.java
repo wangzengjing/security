@@ -19,6 +19,21 @@ public class AuthenctiationFailureHandler implements AuthenticationFailureHandle
 
         log.info("登录失败:"+exception.getMessage());
 
+//        if (exception instanceof BadCredentialsException ||
+//                exception instanceof UsernameNotFoundException) {
+//            respBean = RespBean.error("账户名或者密码输入错误!");
+//        } else if (exception instanceof LockedException) {
+//            respBean = RespBean.error("账户被锁定，请联系管理员!");
+//        } else if (exception instanceof CredentialsExpiredException) {
+//            respBean = RespBean.error("密码过期，请联系管理员!");
+//        } else if (exception instanceof AccountExpiredException) {
+//            respBean = RespBean.error("账户过期，请联系管理员!");
+////        } else if (exception instanceof DisabledException) {
+//            respBean = RespBean.error("账户被禁用，请联系管理员!");
+//        } else {
+//            respBean = RespBean.error("登录失败!");
+//        }
+
         response.sendRedirect("/login");
     }
 }
