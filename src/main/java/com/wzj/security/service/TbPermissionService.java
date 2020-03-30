@@ -22,4 +22,7 @@ public interface TbPermissionService{
     List<TbPermission> getAllPermission();
 
 
+    List<String> getTbRoleByPid(Long pid);
+
+
 }

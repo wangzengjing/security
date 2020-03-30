@@ -31,5 +31,12 @@ public class TbPermissionServiceImpl implements TbPermissionService {
         return tbPermissionMapper.selectAll();
     }
 
+    @Override
+    @Transactional(readOnly=false)
+    public List<String> getTbRoleByPid(Long pid) {
+        List<String> roles = tbPermissionMapper.selectRoleByPid(pid);
+        return roles;
+    }
+
 
 }

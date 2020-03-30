@@ -29,4 +29,17 @@ FROM
 WHERE
 	u.id = ${userId}
   </select>
+
+    <select id="selectRoleByPid" resultType="java.lang.String">
+        SELECT
+	r.enname
+FROM
+	tb_role r
+	LEFT JOIN tb_role_permission rp ON r.id = rp.role_id
+	LEFT JOIN tb_permission p ON rp.permission_id = p.id
+WHERE
+	p.id = $ {pId}
+
+
+    </select>
 </mapper>
