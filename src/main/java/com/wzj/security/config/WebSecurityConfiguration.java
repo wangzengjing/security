@@ -3,6 +3,7 @@ package com.wzj.security.config;
 import com.wzj.security.config.service.UserDetailsServiceImpl;
 import com.wzj.security.filter.MyFilterInvocationSecurityMetadataSource;
 import com.wzj.security.handler.AuthenctiationSuccessHandler;
+import com.wzj.security.handler.MyAccessDeniedHandler;
 import com.wzj.security.manager.MyAccessDecisionManager;
 import com.wzj.security.validatecode.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAccessDecisionManager myAccessDecisionManager;
 
+    @Autowired
+    private MyAccessDeniedHandler deniedHandler;//自定义错误(403)返回数据
+
 
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
@@ -49,10 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new UserDetailsServiceImpl();
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
     /**
      * 强散列哈希加密实现
      */
@@ -79,19 +80,23 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                              }
                                          })
                 //固定权限设置
-//                .antMatchers("/login","/register/**","/validCode").permitAll()
+//                .antMatchers("/login_p","/register/**","/validCode").permitAll()
 //                .antMatchers("/user/**").hasRole("USER")
 //                .antMatchers("/sys/**").hasRole("SYS")
-               .anyRequest().authenticated()
+//               .anyRequest().authenticated()
         .and().formLogin()
-        .loginPage("/login")
+        .loginPage("/login_p")
         .loginProcessingUrl("/login")
         .successHandler(authenctiationSuccessHandler)
         .failureHandler(authenticationFailureHandler)
+                .permitAll()
         .and().logout()
-        .logoutUrl("/logout")
-        ;
-      //  http.formLogin().successHandler(authenctiationSuccessHandler);
+        .and()
+        .exceptionHandling().accessDeniedHandler(deniedHandler);
+
+        http.authorizeRequests().anyRequest().authenticated();
+        http.csrf().ignoringAntMatchers("/login");
+
 
     }
 
@@ -102,7 +107,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .withUser("wzj").password(bCryptPasswordEncoder().encode("123456")).roles("USER");
 
    //JDBC储存账号密码验证
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService()).passwordEncoder(bCryptPasswordEncoder());
 
     }
 
@@ -113,8 +118,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/*.html",
                 "/**/*.html",
                 "/**/*.css",
-                "/**/*.js"
-        )
-        .antMatchers("/login","/register/**","/validCode","/favicon.ico");
+                "/**/*.js",
+                "/favicon.ico"
+        ).antMatchers("/login_p","/register/**","/validCode");
     }
 }

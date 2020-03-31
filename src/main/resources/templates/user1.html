@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 我是USER1
-<a href="/logout">退出登录</a>
+
+
+<form th:action="@{/logout}" method="post">
+
+        <div class="input-group col-md-6 col-md-offset-3 col-xs-12 ">
+            <button type="submit" class="btn btn-primary btn-block">退出登录</button>
+        </div>
+
+</form>
 </body>
 </html>

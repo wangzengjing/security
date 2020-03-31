@@ -38,7 +38,7 @@ FROM
 	LEFT JOIN tb_role_permission rp ON r.id = rp.role_id
 	LEFT JOIN tb_permission p ON rp.permission_id = p.id
 WHERE
-	p.id = $ {pId}
+	p.id = ${pId}
 
 
     </select>

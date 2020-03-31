@@ -9,14 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SecurityApplicationTests {
 
-    @Autowired
-    private TbPermissionService tbPermissionService;
 
     @Test
     void contextLoads() {
-        TbPermission tbPermissionByUrl = tbPermissionService.getTbPermissionByUrl("/users/");
 
-        System.out.println(tbPermissionByUrl.getId());
     }
 
 

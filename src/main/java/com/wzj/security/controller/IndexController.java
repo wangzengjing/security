@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("/users")
+    @RequestMapping("/users/view")
     public String user1(){
         return "user1";
     }
@@ -22,7 +22,7 @@ public class IndexController {
         return "user3";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login_p")
     public String login(){
         return "login";
     }
@@ -39,8 +39,8 @@ public class IndexController {
     }
 
 
-    @RequestMapping("/logout")
-    public String logout(){
-        return "login";
-    }
+//    @RequestMapping("/logout")
+//    public String logout(){
+//        return "login";
+//    }
 }

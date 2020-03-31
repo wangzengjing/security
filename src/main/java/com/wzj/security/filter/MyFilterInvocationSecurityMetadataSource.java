@@ -41,6 +41,10 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
+        // 忽略url请放在此处进行过滤放行
+//        if (requestUrl.contains("logout")) {
+//            return null;
+//        }
         //数据库查询suo所有的权限
 
         List<TbPermission> allPermission = tbPermissionService.getAllPermission();
