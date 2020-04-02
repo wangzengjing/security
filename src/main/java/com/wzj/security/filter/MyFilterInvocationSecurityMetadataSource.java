@@ -39,7 +39,7 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
      **/
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-
+        //获取请求url
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
         // 忽略url请放在此处进行过滤放行
 //        if (requestUrl.contains("logout")) {
