@@ -80,12 +80,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                              }
                                          })
                 //固定权限设置
-//                .antMatchers("/login_p","/register/**","/validCode").permitAll()
+//                .antMatchers("/login_p").permitAll()
 //                .antMatchers("/user/**").hasRole("USER")
 //                .antMatchers("/sys/**").hasRole("SYS")
 //               .anyRequest().authenticated()
         .and().formLogin()
-        .loginPage("/login_p")
+        .loginPage("/login")
         .loginProcessingUrl("/login")
         .successHandler(authenctiationSuccessHandler)
         .failureHandler(authenticationFailureHandler)
@@ -120,6 +120,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/**/*.css",
                 "/**/*.js",
                 "/favicon.ico"
-        ).antMatchers("/login_p","/register/**","/validCode");
+        ).antMatchers("/register/**","/validCode");
     }
 }

@@ -42,9 +42,9 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
         //获取请求url
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
         // 忽略url请放在此处进行过滤放行
-//        if (requestUrl.contains("logout")) {
-//            return null;
-//        }
+        if (requestUrl.equals("/login")||requestUrl.contains("logout")) {
+            return null;
+        }
         //数据库查询suo所有的权限
 
         List<TbPermission> allPermission = tbPermissionService.getAllPermission();
